@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.30)
 project(
     glad2cmake
-    VERSION 1.1.1
+    VERSION 1.1.2
     DESCRIPTION "Multi-Langugae GL Loader-Generator."
     LANGUAGES C CXX
 )
@@ -45,7 +45,7 @@ install(
 )
 
 write_basic_package_version_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/Glad2CMakeConfigVersion.cmake"
+    "${CMAKE_CURRENT_SOURCE_DIR}/glad2cmakeConfigVersion.cmake"
     VERSION ${PROJECT_VERSION}
     COMPATIBILITY SameMajorVersion
 )
