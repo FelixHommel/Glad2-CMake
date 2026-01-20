@@ -1,13 +1,60 @@
-cmake_minimum_required(VERSION 3.31)
+cmake_minimum_required(VERSION 3.30)
 project(
-    Glad2
+    glad2cmake
+    VERSION 1.1.0
     DESCRIPTION "Multi-Langugae GL Loader-Generator."
-    LANGUAGES C CXX)
+    LANGUAGES C CXX
+)
 
 set(CMAKE_CXX_STANDARD 23)
-set(LIBRARY "Glad2")
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-project(${LIBRARY})
+add_library(${PROJECT_NAME} ./src/gl.c)
+target_sources(${PROJECT_NAME}
+    PRIVATE
+        FILE_SET HEADERS
+        FILES
+            ./include/glad/gl.h
+            ./include/KHR/khrplatform.h
+)
+add_library(Glad2CMake::Glad2CMake ALIAS glad2cmake)
+target_include_directories(${PROJECT_NAME} PUBLIC include/)
 
-add_library(${LIBRARY} include/glad/gl.h src/gl.c include/KHR/khrplatform.h)
-target_include_directories(${LIBRARY} PUBLIC include/)
+include(CMakePackageConfigHelpers)
+
+install(
+    TARGETS glad2cmake
+    EXPORT glad2cmakeTargets
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION bin
+    INCLUDES DESTINATION include
+)
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(
+    EXPORT glad2cmakeTargets
+    FILE glad2cmakeTargets.cmake
+    NAMESPACE Glad2CMake::
+    DESTINATION lib/cmake/Glad2CMake
+)
+
+write_basic_package_version_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/Glad2CMakeConfigVersion.cmake"
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY SameMajorVersion
+)
+
+configure_package_config_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/glad2cmakeConfig.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/glad2cmakeConfig.cmake"
+    INSTALL_DESTINATION lib/cmake/glad2cmake
+)
+
+install(
+    FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/clad2cmakeConfig.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/glad2cmakeConfigVersion.cmake"
+    DESTINATION lib/cmake/glad2cmake
+)
