@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.30)
 project(
     glad2cmake
-    VERSION 1.1.0
+    VERSION 1.1.1
     DESCRIPTION "Multi-Langugae GL Loader-Generator."
     LANGUAGES C CXX
 )
@@ -18,7 +18,11 @@ target_sources(${PROJECT_NAME}
             ./include/KHR/khrplatform.h
 )
 add_library(Glad2CMake::Glad2CMake ALIAS glad2cmake)
-target_include_directories(${PROJECT_NAME} PUBLIC include/)
+target_include_directories(${PROJECT_NAME}
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+)
 
 include(CMakePackageConfigHelpers)
 
