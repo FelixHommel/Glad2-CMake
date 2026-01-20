@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.30)
 project(
     glad2cmake
-    VERSION 1.1.2
+    VERSION 1.1.4
     DESCRIPTION "Multi-Langugae GL Loader-Generator."
     LANGUAGES C CXX
 )
@@ -24,25 +24,27 @@ target_include_directories(${PROJECT_NAME}
         $<INSTALL_INTERFACE:include>
 )
 
-include(CMakePackageConfigHelpers)
+include(GNUInstallDirs)
 
 install(
     TARGETS glad2cmake
     EXPORT glad2cmakeTargets
-    ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib
-    RUNTIME DESTINATION bin
-    INCLUDES DESTINATION include
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
-install(DIRECTORY include/ DESTINATION include)
+install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 install(
     EXPORT glad2cmakeTargets
     FILE glad2cmakeTargets.cmake
     NAMESPACE Glad2CMake::
-    DESTINATION lib/cmake/glad2cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/glad2cmake
 )
+
+include(CMakePackageConfigHelpers)
 
 write_basic_package_version_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/glad2cmakeConfigVersion.cmake"
@@ -53,12 +55,12 @@ write_basic_package_version_file(
 configure_package_config_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/cmake/glad2cmakeConfig.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/glad2cmakeConfig.cmake"
-    INSTALL_DESTINATION lib/cmake/glad2cmake
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/glad2cmake
 )
 
 install(
     FILES
         "${CMAKE_CURRENT_BINARY_DIR}/glad2cmakeConfig.cmake"
         "${CMAKE_CURRENT_BINARY_DIR}/glad2cmakeConfigVersion.cmake"
-    DESTINATION lib/cmake/glad2cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/glad2cmake
 )
