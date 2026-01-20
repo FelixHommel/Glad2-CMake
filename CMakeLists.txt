@@ -37,7 +37,7 @@ install(
     EXPORT glad2cmakeTargets
     FILE glad2cmakeTargets.cmake
     NAMESPACE Glad2CMake::
-    DESTINATION lib/cmake/Glad2CMake
+    DESTINATION lib/cmake/glad2cmake
 )
 
 write_basic_package_version_file(
@@ -54,7 +54,7 @@ configure_package_config_file(
 
 install(
     FILES
-        "${CMAKE_CURRENT_BINARY_DIR}/clad2cmakeConfig.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/glad2cmakeConfig.cmake"
         "${CMAKE_CURRENT_BINARY_DIR}/glad2cmakeConfigVersion.cmake"
     DESTINATION lib/cmake/glad2cmake
 )
