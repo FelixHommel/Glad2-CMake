@@ -4,7 +4,7 @@ This is a convenience wrapper in CMake of the original library created by [Dav1d
 I created it so that Glad can be used with CMake's FetchContent or vcpkg instead of having it as loose files and as extra
 CMake target in the project. 
 
-OpenGL Loader for OpenGL 4.6 generated with the [Glad2 Generator](https://gen.glad.sh/#generator=c&api=gl%3D4.6&profile=gl%3Dcore%2Cgles1%3Dcommon).
+OpenGL Loader for OpenGL 3.3 generated with the [Glad2 Generator](https://gen.glad.sh/#generator=c&api=gl%3D4.6&profile=gl%3Dcore%2Cgles1%3Dcommon).
 
 ## Requirements
 
@@ -34,7 +34,7 @@ To use it with vcpkg, you need to add it as custom port to your vcpkg project.
     ```json
     {
         "name": "glad2cmake",
-        "version-string": "1.1.5",
+        "version-string": "1.1.6",
         "description": "Glad2 OpenGL loader packaged for CMake",
         "homepage": "https://github.com/FelixHommel/Glad2-CMake",
         "license": "MIT",
@@ -57,7 +57,7 @@ To use it with vcpkg, you need to add it as custom port to your vcpkg project.
     vcpkg_from_github(
         OUT_SOURCE_PATH SOURCE_PATH
         REPO FelixHommel/Glad2-CMake
-        REF v1.1.5
+        REF v1.1.6
         SHA512 <hash of the release archive>
     )
 

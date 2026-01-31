@@ -1,13 +1,17 @@
 cmake_minimum_required(VERSION 3.30)
 project(
     glad2cmake
-    VERSION 1.1.4
+    VERSION 1.1.6
     DESCRIPTION "Multi-Langugae GL Loader-Generator."
     LANGUAGES C CXX
 )
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+if(WIN32 AND BUILD_SHARED_LIBS)
+    set_target_properties(${PROJECT_NAME} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+endif()
 
 add_library(${PROJECT_NAME} ./src/gl.c)
 target_sources(${PROJECT_NAME}
