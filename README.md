@@ -34,7 +34,7 @@ To use it with vcpkg, you need to add it as custom port to your vcpkg project.
     ```json
     {
         "name": "glad2cmake",
-        "version-string": "1.1.6",
+        "version-string": "1.1.7",
         "description": "Glad2 OpenGL loader packaged for CMake",
         "homepage": "https://github.com/FelixHommel/Glad2-CMake",
         "license": "MIT",
@@ -57,7 +57,7 @@ To use it with vcpkg, you need to add it as custom port to your vcpkg project.
     vcpkg_from_github(
         OUT_SOURCE_PATH SOURCE_PATH
         REPO FelixHommel/Glad2-CMake
-        REF v1.1.6
+        REF v1.1.7
         SHA512 <hash of the release archive>
     )
 
